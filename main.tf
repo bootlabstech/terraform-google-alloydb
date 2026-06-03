@@ -6,6 +6,7 @@ resource "random_password" "alloydb_password" {
 
 resource "google_secret_manager_secret" "alloydb_password" {
   secret_id = "${var.cluster_id}-db-password"
+  project = var.project_id
 
   replication {
     user_managed {
@@ -25,6 +26,8 @@ resource "google_secret_manager_secret_version" "alloydb_password" {
 resource "google_alloydb_cluster" "cluster" {
   cluster_id = var.cluster_id
   location   = var.region
+  project = var.project_id
+
 
   network_config {
     network = var.network_self_link
