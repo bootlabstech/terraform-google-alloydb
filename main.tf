@@ -18,9 +18,7 @@ resource "google_secret_manager_secret" "alloydb_password" {
 
 resource "google_secret_manager_secret_version" "alloydb_password" {
   secret = google_secret_manager_secret.alloydb_password.id
-  #   secret_data = random_password.alloydb_password.result
-  secret_data_wo         = random_password.alloydb_password.result
-  secret_data_wo_version = 1
+  secret_data = random_password.alloydb_password.result
 
 }
 
